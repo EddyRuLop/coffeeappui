@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
 class CoffeeTile extends StatelessWidget {
-  const CoffeeTile({super.key});
+  final String coffeeImagePath;
+  final String coffeeName;
+  final String coffeePrice;
+
+  CoffeeTile({
+    required this.coffeeImagePath,
+    required this.coffeeName,
+    required this.coffeePrice,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +26,46 @@ class CoffeeTile extends StatelessWidget {
               //image
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
-                  "lib/images/coffee.jpg",
-                ),
+                child: Image.asset(coffeeImagePath),
               ),
               //name
-              Text(
-                "Latte",
-                style: TextStyle(fontSize: 20),
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
+                child: Column(
+                  children: [
+                    Text(
+                      coffeeName,
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    SizedBox(
+                      height: 4,
+                    ),
+                    Text(
+                      "With almond Milk",
+                      style: TextStyle(color: Colors.grey[700]),
+                    )
+                  ],
+                ),
               ),
-              Text(
-                "With almond Milk",
-                style: TextStyle(color: Colors.grey[400]),
+              //price
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "\$ " + coffeePrice,
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(4),
+                      decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: Icon(Icons.add),
+                    )
+                  ],
+                ),
               )
             ],
           ),
